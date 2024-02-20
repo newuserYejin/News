@@ -39,3 +39,17 @@
     margin-top: 10px;
     padding-bottom: 10px;
 }
+
+.inputArea {
+    text-align: right;
+}
+
+#searchInput {
+    border: none;
+    border-bottom: solid 1px black;
+}
+
+.none_news {
+    text-align: center;
+    font-size: 1.5em;
+}
