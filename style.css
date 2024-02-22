@@ -42,14 +42,109 @@
 
 .inputArea {
     text-align: right;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.inputArea i {
+    padding-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.inputArea div button {
+    background-color: #457b9d;
+    color: white;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
 }
 
 #searchInput {
-    border: none;
-    border-bottom: solid 1px black;
+    width: 70%;
+    border-radius: 5px;
 }
 
 .none_news {
     text-align: center;
     font-size: 1.5em;
+}
+
+.topOftop {
+    /* border: solid 1px red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.bar_menu i {
+    display: none;
+}
+
+.side_menu {
+    background-color: beige;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    /* 초기에 왼쪽으로 밀어두기 */
+    transition: left 0.8s;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.side_menu div {
+    width: 90%;
+}
+
+.side_menu div:first-child {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.side_menu div:first-child i {
+    font-size: 2em;
+}
+
+.show-menu {
+    display: flex;
+    left: 5px;
+}
+
+.menu_button {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    justify-content: space-around;
+}
+
+.menu_button button {
+    background: none;
+    padding: 10px 0;
+    font-weight: 600;
+    border: none;
+}
+
+@media (max-width:420px) {
+    .menus button {
+        display: none;
+    }
+
+    .bar_menu i {
+        display: block;
+    }
+}
+
+@media (min-width:420px) {
+    .side_menu {
+        display: none;
+    }
 }

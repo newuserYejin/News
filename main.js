@@ -1,8 +1,12 @@
 const API_KEY = 'feaeef5a51ef41c49fceb7a0ca1046bb'
 let newsList = []
 const menus = document.querySelectorAll(".menus button")
+const side_menus = document.querySelectorAll(".side_menu .menu_button button")
+const side_menuArea = document.querySelector(".side_menu")
 const userInput = document.querySelector("#searchInput")
 const searchButton = document.querySelector("#searchButton")
+const bar_menuIcon = document.querySelector(".bar_menu i")
+const side_closeButton = document.querySelector(".side_menu i")
 
 const getLatesNews = async () => {
     const url = new URL(
@@ -49,7 +53,24 @@ const render = (e) => {
 menus.forEach((menu) => {
     return menu.addEventListener("click", (event) => {
         getNewsByCategory(event)
+        inputArea_input.classList.toggle("hidden")
+        userInput.value = ""
     })
+})
+
+side_menus.forEach((menu) => {
+    return menu.addEventListener("click", (event) => {
+        getNewsByCategory(event)
+        side_menuArea.classList.toggle("show-menu");
+    })
+})
+
+bar_menuIcon.addEventListener("click", () => {
+    side_menuArea.classList.toggle("show-menu");
+})
+
+side_closeButton.addEventListener("click", () => {
+    side_menuArea.classList.toggle("show-menu");
 })
 
 const getNewsByCategory = async (event) => {
@@ -90,6 +111,12 @@ userInput.addEventListener("keypress", function (event) {       // enter 키 이
         searchButton.click();
     }
 });
+
+const inputArea_input = document.querySelector(".inputArea div")
+
+function show_input() {
+    inputArea_input.classList.toggle("hidden")
+}
 
 getLatesNews()          // 함수 부르는거 까먹지 말기
 
