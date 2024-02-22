@@ -7,15 +7,20 @@ const userInput = document.querySelector("#searchInput")
 const searchButton = document.querySelector("#searchButton")
 const bar_menuIcon = document.querySelector(".bar_menu i")
 const side_closeButton = document.querySelector(".side_menu i")
+let url = new URL('https://myfirstnewspage.netlify.app/top-headlines')
 
-const getLatesNews = async () => {
-    const url = new URL(
-        // `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
-        'https://myfirstnewspage.netlify.app/top-headlines'
-    )
+const getNews = async () => {
     const response = await fetch(url)
     const data = await response.json()
     newsList = data.articles
+    return newsList
+}
+
+const getLatesNews = async () => {
+    url = new URL('https://myfirstnewspage.netlify.app/top-headlines')
+
+    await getNews()
+
     console.log("data: ", newsList)
     render(newsList)
 }
@@ -53,7 +58,6 @@ const render = (e) => {
 menus.forEach((menu) => {
     return menu.addEventListener("click", (event) => {
         getNewsByCategory(event)
-        inputArea_input.classList.toggle("hidden")
         userInput.value = ""
     })
 })
@@ -76,13 +80,10 @@ side_closeButton.addEventListener("click", () => {
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase()
     console.log(category)
-    const url = new URL(`https://myfirstnewspage.netlify.app/top-headlines?category=${category}`)
+    url = new URL(`https://myfirstnewspage.netlify.app/top-headlines?category=${category}`)
 
-    const response = await fetch(url)
-    const data = await response.json()
-    console.log(data)
+    await getNews()
 
-    newsList = data.articles
     render(newsList)
 }
 
@@ -90,15 +91,19 @@ const getNewsByKeyword = async () => {
     const keyword = userInput.value
     console.log(keyword)
 
-    const url = new URL(`https://myfirstnewspage.netlify.app/top-headlines?q=${keyword}`)
+    url = new URL(`https://myfirstnewspage.netlify.app/top-headlines?q=${keyword}`)
 
-    const response = await fetch(url)
-    const data = await response.json();
-    console.log("data :", data)
+    await getNews()
 
-    newsList = data.articles
     console.log("length:", newsList.articles)
-    if (!data.articles || data.articles.length === 0) {         // 검색 결과가 없을때   
+
+    // if (!data.articles || data.articles.length === 0) {         // 검색 결과가 없을때   
+    //     render()
+    // } else {
+    //     render(newsList)
+    // }
+
+    if (newsList.length === 0) {
         render()
     } else {
         render(newsList)
