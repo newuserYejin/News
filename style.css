@@ -133,6 +133,25 @@
     border: none;
 }
 
+#pageButton {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    --bs-pagination-color: #d4a373;
+    --bs-pagination-active-bg: #d4a373;
+    --bs-pagination-active-border-color: #d4a373;
+    --bs-pagination-hover-color: #d4a373;
+    /* --bs-pagination-disabled-border-color: #faedcd; */
+    --bs-pagination-border-color: white;
+    --bs-pagination-focus-bg: #faedcd;
+    --bs-pagination-hover-bg: #faedcd;
+    --bs-pagination-focus-color: #d4a373;
+    --bs-pagination-font-size: 1.3rem;
+}
+
 @media (max-width:420px) {
     .menus button {
         display: none;
